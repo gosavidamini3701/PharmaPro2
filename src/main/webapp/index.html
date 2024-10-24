@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>PharmaPro</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+
+   <!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
+    <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <h1 class="m-0 text-primary"><i class="far fa-hospital me-3"></i>PharmaPro</h1>
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a href="index.html" class="nav-item nav-link active">Home</a>
+            <a href="about.html" class="nav-item nav-link">About</a>
+            
+            <!-- Medicine Inventory Portal -->
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Medicine Inventory</a>
+                <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                    <a href="medicine_management.html" class="dropdown-item">Manage Medicines</a>
+                    <a href="stock_levels.html" class="dropdown-item">Stock Levels</a>
+                    <a href="expiry_alerts.html" class="dropdown-item">Expiry Alerts</a>
+                    <a href="batch_tracking.html" class="dropdown-item">Batch Tracking</a>
+                    <a href="sales_records.html" class="dropdown-item">Sales Records</a>
+                    <a href="reorder_alerts.html" class="dropdown-item">Reorder Alerts</a>
+                </div>
+            </div>
+
+            <!-- Pharmacist Portal -->
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pharmacist</a>
+                <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                    <a href="prescription_management.html" class="dropdown-item">Manage Prescriptions</a>
+                    <a href="sales_transactions.html" class="dropdown-item">Sales Transactions</a>
+                    <a href="medicine_lookup.html" class="dropdown-item">Medicine Lookup</a>
+                    <a href="customer_records.html" class="dropdown-item">Customer Records</a>
+                </div>
+            </div>
+
+            <!-- User Portal -->
+            <div class="nav-item dropdown">
+                <a href="userportal.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">User Portal</a>
+                <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                    <a href="medicine_catalog.html" class="dropdown-item">Medicine Catalog</a>
+                    <a href="order_tracking.html" class="dropdown-item">Order Tracking</a>
+                    <a href="profile_management.html" class="dropdown-item">Profile Management</a>
+                    <a href="prescription_upload.html" class="dropdown-item">Upload Prescription</a>
+                </div>
+            </div>
+
+            <!-- Supplier Portal -->
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Supplier</a>
+                <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                    <a href="order_management.html" class="dropdown-item">Order Management</a>
+                    <a href="supply_history.html" class="dropdown-item">Supply History</a>
+                    <a href="batch_details.html" class="dropdown-item">Batch Details</a>
+                    <a href="reorder_notifications.html" class="dropdown-item">Reorder Notifications</a>
+                    <a href="delivery_status.html" class="dropdown-item">Delivery Status</a>
+                    <a href="supply_agreements.html" class="dropdown-item">Supply Agreements</a>
+                </div>
+            </div>
+            
+            <a href="contact.html" class="nav-item nav-link">Contact</a>
+
+            <a href="login.html" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Login<i class="fa fa-arrow-right ms-3"></i></a>
+        </div>
+    </div>
+</nav>
+<!-- Navbar End -->
+
+    <!-- Header Start -->
+    <div class="container-fluid header bg-primary p-0 mb-5">
+        <div class="row g-0 align-items-center flex-column-reverse flex-lg-row">
+            <div class="col-lg-6 p-5 wow fadeIn" data-wow-delay="0.1s">
+                <h1 class="display-4 text-white mb-5">Good Health Is The Root Of All Heppiness</h1>
+                <div class="row g-4">
+                    <div class="col-sm-4">
+                        <div class="border-start border-light ps-4">
+                            <h2 class="text-white mb-1" data-toggle="counter-up">123</h2>
+                            <p class="text-light mb-0">Expert Doctors</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="border-start border-light ps-4">
+                            <h2 class="text-white mb-1" data-toggle="counter-up">1234</h2>
+                            <p class="text-light mb-0">Medical Stuff</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="border-start border-light ps-4">
+                            <h2 class="text-white mb-1" data-toggle="counter-up">12345</h2>
+                            <p class="text-light mb-0">Total Customers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                <div class="owl-carousel header-carousel">
+                    <div class="owl-carousel-item position-relative">
+                        <img class="img-fluid" src="img/carousel-1.jpg" alt="">
+                        <div class="owl-carousel-text">
+                            <h1 class="display-1 text-white mb-0">Pharmacy</h1>
+                        </div>
+                    </div>
+                    <div class="owl-carousel-item position-relative">
+                        <img class="img-fluid" src="img/carousel-2.jpg" alt="">
+                        <div class="owl-carousel-text">
+                            <h1 class="display-1 text-white mb-0">Customers</h1>
+                        </div>
+                    </div>
+                    <div class="owl-carousel-item position-relative">
+                        <img class="img-fluid" src="img/carousel-3.jpg" alt="">
+                        <div class="owl-carousel-text">
+                            <h1 class="display-1 text-white mb-0">Suppliers</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+
+    <!-- About Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                <div class="d-flex flex-column">
+                    <img class="img-fluid" src="img/carousel-3.jpg" alt="">
+                    <img class="img-fluid rounded w-50 bg-white pt-3 pe-3" src="img/about-pharmacy-2.jpg" alt="Pharmacist Consulting" style="margin-top: -25%;">
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                <p class="d-inline-block border rounded-pill py-1 px-4">About Us</p>
+                <h1 class="mb-4">Why You Should Trust Us? Get to Know About Us!</h1>
+                <p>At PharmaPro, we prioritize your health and well-being. Our dedicated team is committed to providing you with the highest quality of pharmaceutical care and services.</p>
+                <p class="mb-4">With a wide range of medicines and a knowledgeable staff, we ensure that you receive personalized service tailored to your needs. Trust us for reliable health solutions.</p>
+                <p><i class="far fa-check-circle text-primary me-3"></i>Quality Health Care Services</p>
+                <p><i class="far fa-check-circle text-primary me-3"></i>Experienced and Qualified Pharmacists</p>
+                <p><i class="far fa-check-circle text-primary me-3"></i>Customer-Centric Approach</p>
+                <a class="btn btn-primary rounded-pill py-3 px-5 mt-3" href="">Read More</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+
+
+
+    <!-- Service Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <p class="d-inline-block border rounded-pill py-1 px-4">Services</p>
+            <h1>Health Care Solutions</h1>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item bg-light rounded h-100 p-5">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                        <i class="fa fa-pills text-primary fs-4"></i>
+                    </div>
+                    <h4 class="mb-3">Prescription Medications</h4>
+                    <p class="mb-4">We offer a wide range of prescription medications tailored to meet the unique needs of each patient.</p>
+                    <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item bg-light rounded h-100 p-5">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                        <i class="fa fa-syringe text-primary fs-4"></i>
+                    </div>
+                    <h4 class="mb-3">Vaccination Services</h4>
+                    <p class="mb-4">Our trained pharmacists provide various vaccination services to help protect you and your family.</p>
+                    <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="service-item bg-light rounded h-100 p-5">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                        <i class="fa fa-user-md text-primary fs-4"></i>
+                    </div>
+                    <h4 class="mb-3">Consultation Services</h4>
+                    <p class="mb-4">Get expert advice from our licensed pharmacists on medication management and health inquiries.</p>
+                    <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item bg-light rounded h-100 p-5">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                        <i class="fa fa-archive text-primary fs-4"></i>
+                    </div>
+                    <h4 class="mb-3">Health and Wellness Products</h4>
+                    <p class="mb-4">Explore our selection of health supplements and wellness products to support your overall health.</p>
+                    <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item bg-light rounded h-100 p-5">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                        <i class="fa fa-thermometer-half text-primary fs-4"></i>
+                    </div>
+                    <h4 class="mb-3">Health Monitoring</h4>
+                    <p class="mb-4">We offer health monitoring services including blood pressure checks and glucose monitoring.</p>
+                    <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="service-item bg-light rounded h-100 p-5">
+                    <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                        <i class="fa fa-file-medical text-primary fs-4"></i>
+                    </div>
+                    <h4 class="mb-3">Medication Reviews</h4>
+                    <p class="mb-4">Our pharmacists conduct medication reviews to ensure safe and effective use of medications.</p>
+                    <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Service End -->
+
+    <!-- Feature Start -->
+    <div class="container-fluid bg-primary overflow-hidden my-5 px-lg-0">
+        <div class="container feature px-lg-0">
+            <div class="row g-0 mx-lg-0">
+                <div class="col-lg-6 feature-text py-5 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="p-lg-5 ps-lg-0">
+                        <p class="d-inline-block border rounded-pill text-light py-1 px-4">Features</p>
+                        <h1 class="text-white mb-4">Why Choose Us</h1>
+                        <p class="text-white mb-4 pb-2">When it comes to your health, choosing the right healthcare provider is crucial, and we stand out as the premier choice. Our team of experienced professionals is dedicated to delivering quality care, ensuring that your health and comfort are our top priorities. We create a positive consultation experience in a supportive environment, and our 24/7 support ensures you have access to assistance whenever you need it.</p>
+                        <div class="row g-4">
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light" style="width: 55px; height: 55px;">
+                                        <i class="fa fa-user-md text-primary"></i>
+                                    </div>
+                                    <div class="ms-4">
+                                        <p class="text-white mb-2">Experience</p>
+                                        <h5 class="text-white mb-0">Doctors</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light" style="width: 55px; height: 55px;">
+                                        <i class="fa fa-check text-primary"></i>
+                                    </div>
+                                    <div class="ms-4">
+                                        <p class="text-white mb-2">Quality</p>
+                                        <h5 class="text-white mb-0">Services</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light" style="width: 55px; height: 55px;">
+                                        <i class="fa fa-comment-medical text-primary"></i>
+                                    </div>
+                                    <div class="ms-4">
+                                        <p class="text-white mb-2">Positive</p>
+                                        <h5 class="text-white mb-0">Consultation</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light" style="width: 55px; height: 55px;">
+                                        <i class="fa fa-headphones text-primary"></i>
+                                    </div>
+                                    <div class="ms-4">
+                                        <p class="text-white mb-2">24 Hours</p>
+                                        <h5 class="text-white mb-0">Support</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 pe-lg-0 wow fadeIn" data-wow-delay="0.5s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute img-fluid w-100 h-100" src="img/feature.jpg" style="object-fit: cover;" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Feature End -->
+
+
+    <!-- Team Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <p class="d-inline-block border rounded-pill py-1 px-4">Our Team</p>
+            <h1>Meet Our Experienced Team</h1>
+            <p class="text-muted">Our dedicated team collaborates closely with trusted pharmacy users and suppliers to deliver the best healthcare solutions.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="team-item position-relative rounded overflow-hidden">
+                    <div class="overflow-hidden">
+                        <img class="img-fluid" src="img/team-1.jpg" alt="">
+                    </div>
+                    <div class="team-text bg-light text-center p-4">
+                        <h5>Dr. Reddy's Laboratories</h5>
+                        <p class="text-primary">Suppilers</p>
+                        <div class="team-social text-center">
+                            <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square" href=""><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="team-item position-relative rounded overflow-hidden">
+                    <div class="overflow-hidden">
+                        <img class="img-fluid" src="img/team-2.jpg" alt="">
+                    </div>
+                    <div class="team-text bg-light text-center p-4">
+                        <h5>Zydus Cadila</h5>
+                        <p class="text-primary">Suppilers</p>
+                        <div class="team-social text-center">
+                            <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square" href=""><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="team-item position-relative rounded overflow-hidden">
+                    <div class="overflow-hidden">
+                        <img class="img-fluid" src="img/team-3.jpg" alt="">
+                    </div>
+                    <div class="team-text bg-light text-center p-4">
+                        <h5>Apollo Pharmacy</h5>
+                        <p class="text-primary">Customers</p>
+                        <div class="team-social text-center">
+                            <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square" href=""><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="team-item position-relative rounded overflow-hidden">
+                    <div class="overflow-hidden">
+                        <img class="img-fluid" src="img/team-4.jpg" alt="">
+                    </div>
+                    <div class="team-text bg-light text-center p-4">
+                        <h5>Mediworld</h5>
+                        <p class="text-primary">Customers</p>
+                        <div class="team-social text-center">
+                            <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square" href=""><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Team End -->
+
+
+    <!-- Registration Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <p class="d-inline-block border rounded-pill py-1 px-4">Registration</p>
+                <h1 class="mb-4">Register to Access Our Services</h1>
+                <p class="mb-4">Join us to enjoy the benefits of our services. Fill out the form below to get started!</p>
+                <div class="bg-light rounded d-flex align-items-center p-5 mb-4">
+                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white" style="width: 55px; height: 55px;">
+                        <i class="fa fa-phone-alt text-primary"></i>
+                    </div>
+                    <div class="ms-4">
+                        <p class="mb-2">Call Us Now</p>
+                        <h5 class="mb-0">+012 345 6789</h5>
+                    </div>
+                </div>
+                <div class="bg-light rounded d-flex align-items-center p-5">
+                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white" style="width: 55px; height: 55px;">
+                        <i class="fa fa-envelope-open text-primary"></i>
+                    </div>
+                    <div class="ms-4">
+                        <p class="mb-2">Mail Us Now</p>
+                        <h5 class="mb-0">pharmapro@gmail.com</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="bg-light rounded h-100 d-flex align-items-center p-5">
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-6">
+                                <input type="text" class="form-control border-0" placeholder="Your Name" style="height: 55px;" required>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="email" class="form-control border-0" placeholder="Your Email" style="height: 55px;" required>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="text" class="form-control border-0" placeholder="Your Mobile" style="height: 55px;" required>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <select class="form-select border-0" style="height: 55px;" required>
+                                    <option selected disabled>Register As</option>
+                                    <option value="user">User</option>
+                                    <option value="supplier">Supplier</option>
+                                    <option value="pharmacist">Pharmacist</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <input type="password" class="form-control border-0" placeholder="Create Password" style="height: 55px;" required>
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control border-0" rows="5" placeholder="Additional Information (optional)"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Register</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Registration End -->
+
+
+    <!-- Testimonial Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <p class="d-inline-block border rounded-pill py-1 px-4">Testimonial</p>
+            <h1>What Say Our Customers!</h1>
+        </div>
+        <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+            <div class="testimonial-item text-center">
+                <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-1.jpg" style="width: 100px; height: 100px;">
+                <div class="testimonial-text rounded text-center p-4">
+                    <p>"I was impressed with the variety of medicines available at PharmaPro. Their customer support team was quick to assist me when I had a question about a specific product. Just wish they had a mobile app!"</p>
+                    <h5 class="mb-1">Anjali Sharma</h5>
+                    <span class="fst-italic">Hydrabad</span>
+                </div>
+            </div>
+            <div class="testimonial-item text-center">
+                <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-2.jpg" style="width: 100px; height: 100px;">
+                <div class="testimonial-text rounded text-center p-4">
+                    <p>"PharmaPro has made my life so much easier. I can easily order my prescriptions online, and the reminders for refills are a lifesaver. Highly recommend their services!"</p>
+                    <h5 class="mb-1">Deepak Meheta</h5>
+                    <span class="fst-italic">Mumbai</span>
+                </div>
+            </div>
+            <div class="testimonial-item text-center">
+                <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-3.jpg" style="width: 100px; height: 100px;">
+                <div class="testimonial-text rounded text-center p-4">
+                    <p>"I had a great experience with PharmaPro! The ordering process was seamless, and the delivery was prompt. The staff was very helpful in answering all my queries about the medicines I needed."</p>
+                    <h5 class="mb-1">Ravi Kumar</h5>
+                    <span class="fst-italic">Pune</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Testimonial End -->
+
+
+
+    <!-- Footer Start -->
+<div class="container-fluid bg-dark text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-light mb-4">Address</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>456 Medicinal Lane, Mumbai, India</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 98765 43210</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>support@pharmapro.com</p>
+                <div class="d-flex pt-2">
+                    <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-youtube"></i></a>
+                    <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-light mb-4">Services</h5>
+                <a class="btn btn-link" href="">Prescription Refills</a>
+                <a class="btn btn-link" href="">Over-the-Counter Medicines</a>
+                <a class="btn btn-link" href="">Health Supplements</a>
+                <a class="btn btn-link" href="">Consultation Services</a>
+                <a class="btn btn-link" href="">Home Delivery</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-light mb-4">Quick Links</h5>
+                <a class="btn btn-link" href="">About Us</a>
+                <a class="btn btn-link" href="">Contact Us</a>
+                <a class="btn btn-link" href="">Our Services</a>
+                <a class="btn btn-link" href="">Terms & Conditions</a>
+                <a class="btn btn-link" href="">Support</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h5 class="text-light mb-4">Newsletter</h5>
+                <p>Stay updated with our latest offers and health tips!</p>
+                <div class="position-relative mx-auto" style="max-width: 400px;">
+                    <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                    <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="copyright">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="#">PharmaPro</a>, All Rights Reserved.
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
