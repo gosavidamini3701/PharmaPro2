@@ -13,7 +13,7 @@ public class UserDAO {
 
     // SQL queries
     private static final String INSERT_USER_SQL = "INSERT INTO users (username, password, role, email, phone_number) VALUES (?, ?, ?, ?, ?)";
-    private static final String SELECT_USER_BY_EMAIL_AND_PASSWORD = "SELECT * FROM users WHERE email = ? AND password = ?";
+    private static final String SELECT_USER_BY_EMAIL_AND_PASSWORD_AND_ROLE = "SELECT * FROM users WHERE email = ? AND password = ? AND role=?";
 
     private static final String INSERT_USER_CUSTOMER_SQL = "INSERT INTO customers (user_id, full_name, phone_number, customerEmail) VALUES (?, ?, ?, ?)";
     private static final String INSERT_USER_SUPPLIER_SQL = "INSERT INTO suppliers (user_id, supplier_name, supplier_phone, supplier_email) VALUES (?, ?, ?, ?)";
@@ -83,26 +83,27 @@ public class UserDAO {
     }
 
     // User login method
-    public static User loginUser(String email, String password) {
+    public  User loginUser(String email, String password,String role) {
         User user = null;
 
         // Using try-with-resources to automatically close resources
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_EMAIL_AND_PASSWORD)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_EMAIL_AND_PASSWORD_AND_ROLE)) {
 
             // Set parameters for the SQL query
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, password);
+            preparedStatement.setString(3, role);
 
             // Execute the query and get the result
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 if (rs.next()) {
                     // Map the result set to the User object
                     user = new User();
-                    user.setUserId(rs.getInt("userId"));
-                    user.setUserName(rs.getString("userName"));
+                    user.setUserId(rs.getInt("user_id"));
+                    user.setUserName(rs.getString("username"));
                     user.setEmail(rs.getString("email"));
-                    user.setPhone(rs.getString("phone"));
+                    user.setPhone(rs.getString("phone_number"));
                 }
             }
         } catch (SQLException e) {

@@ -43,7 +43,7 @@ public class UserLoginServlet extends HttpServlet {
         String role = request.getParameter("role");
         
         // Check if the user credentials are valid
-        User user = userDAO.loginUser(email, password);
+        User user = userDAO.loginUser(email, password ,role);
         
         // Check login result
         if (user != null) {

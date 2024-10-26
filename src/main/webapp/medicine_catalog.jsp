@@ -9,6 +9,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -91,11 +92,15 @@
                 <!-- //Java code  -->
 
                 <%
-                ResultSet rs;
-                PreparedStatement ps;
+                
+               
+                System.out.print("from medicine catalog");
+                
+                 ResultSet rs;
+                 PreparedStatement ps;
                  User user =new User();
                  String useremail = user.getEmail();
-                
+                  
                     try {
                         // Get the database connection using the ConnectDB class
                          Connection con=ConnectDB.dbCon();
