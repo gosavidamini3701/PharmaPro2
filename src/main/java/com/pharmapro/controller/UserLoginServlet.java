@@ -1,10 +1,13 @@
 package com.pharmapro.controller;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 
 import com.pharmapro.model.User;
@@ -48,13 +51,14 @@ public class UserLoginServlet extends HttpServlet {
         // Check login result
         if (user != null) {
             // User is authenticated, redirect to the dashboard or home page
-            request.getSession().setAttribute("user", user); // Store user info in session
-            response.sendRedirect("dashboard.html"); // Replace with your desired landing page
+            request.getSession().setAttribute("user", user); 
+            response.sendRedirect("dashboard.html"); 
         } else {
             // Authentication failed, set an error message
             request.setAttribute("errorMessage", "Invalid email or password. Please try again.");
-            request.getRequestDispatcher("login.html").forward(request, response); // Forward back to login page
+            request.getRequestDispatcher("login.html").forward(request, response); 
         }
+        
     }
 		
 	

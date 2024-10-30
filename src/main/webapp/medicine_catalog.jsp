@@ -1,14 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="com.pharmapro.connectDB.ConnectDB" %>
 <%@ page import="com.pharmapro.model.*" %>
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +39,6 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 
-
 <body>
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
@@ -57,19 +51,15 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="index.html" class="nav-item nav-link">Home</a>
-                
                 <a href="service.html" class="nav-item nav-link">Profile</a>
                 <a href="service.html" class="nav-item nav-link">Dashboard</a>
                 <a href="about.html" class="nav-item nav-link active"> My Orders</a>
                 <a href="about.html" class="nav-item nav-link active">Logout</a>
-                
-                
             </div>
             <a href="" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">My Cart<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     <!-- Navbar End -->
-
 
     <!-- Page Header Start -->
     <div class="container-fluid page-header py-5 mb-5" style="background-color: #007bff;">
@@ -89,30 +79,16 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row">
-                <!-- //Java code  -->
-
                 <%
-                
-               
-                System.out.print("from medicine catalog");
-                
-                 ResultSet rs;
-                 PreparedStatement ps;
-                 User user =new User();
-                 String useremail = user.getEmail();
-                  
+                    Connection con = null;
+                    PreparedStatement ps = null;
+                    ResultSet rs = null;
                     try {
-                        // Get the database connection using the ConnectDB class
-                         Connection con=ConnectDB.dbCon();
-
-                        // SQL query to fetch medicine details
+                        con = ConnectDB.dbCon();
                         String query = "SELECT medicine_id, name, manufacturer, price, stock_quantity FROM medicines";
-                         ps = con.prepareStatement(query);
+                        ps = con.prepareStatement(query);
                         rs = ps.executeQuery();
-                        
-                        System.out.println("query fired");
 
-                        // Loop through the result set and display each medicine as a card
                         while (rs.next()) {
                             String name = rs.getString("name");
                             String manufacturer = rs.getString("manufacturer");
@@ -127,19 +103,24 @@
                             <p class="card-text">Manufacturer: <%= manufacturer != null ? manufacturer : "N/A" %></p>
                             <p class="card-text">Price: <%= String.format("%.2f", price) %> INR</p>
                             <p class="card-text">Stock: <%= stockQuantity %></p>
-                           
-                            <a href="AddToCartServlet?medicine_id=<%= rs.getInt("medicine_id") %>&user_email=<%= useremail %>" class="btn btn-primary">Add to Cart</a>
-                            
+                            <a href="AddToCartServlet?medicine_id=<%= rs.getInt("medicine_id") %>" class="btn btn-primary">Add to Cart</a>
                         </div>
                     </div>
                 </div>
                 <%
-                   }
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
-                    } 
+                    } finally {
+                        try {
+                            if (rs != null) rs.close();
+                            if (ps != null) ps.close();
+                            if (con != null) con.close();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
                 %>
-
             </div>
         </div>
     </div>

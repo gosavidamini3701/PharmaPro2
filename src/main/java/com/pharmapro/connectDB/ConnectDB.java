@@ -4,8 +4,10 @@ import java.sql.*;
 
 public class ConnectDB {
 
-	public static Connection con=null;
+	
 	public static Connection  dbCon(){
+		
+		Connection con=null;
 		
 		try{
 			

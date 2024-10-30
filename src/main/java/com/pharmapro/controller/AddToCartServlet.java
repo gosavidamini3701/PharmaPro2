@@ -17,12 +17,22 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/AddToCartServlet")
 public class AddToCartServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-       User user=new User();
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Fetch parameters and add validation checks
         String medicineIdStr = request.getParameter("medicine_id");
-        String userIdStr = request.getParameter("user_email");
-        System.out.println("the user id is "+userIdStr);
+        User user = (User) request.getAttribute("user");
+        
+        String userIdStr = user.getEmail();
+        
+        System.out.println("the user email is "+userIdStr);
+        
+        
+
+        // Store user properties in local variables
+        
+        
+        
         
         System.out.print("the medicne id is"+medicineIdStr);
 
@@ -33,11 +43,11 @@ public class AddToCartServlet extends HttpServlet {
         }
 
         int medicineId = 0;
-        int userId = 0;
+       
 
         try {
             medicineId = Integer.parseInt(medicineIdStr);
-            userId = Integer.parseInt(userIdStr);
+           
         } catch (NumberFormatException e) {
             // If parsing fails, send an error response
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid Medicine ID or User ID.");
@@ -55,7 +65,7 @@ public class AddToCartServlet extends HttpServlet {
             // Check if the item is already in the user's cart
             String checkQuery = "SELECT * FROM cart WHERE user_email = ? AND medicine_id = ?";
             ps = con.prepareStatement(checkQuery);
-            ps.setInt(1, userId);
+            ps.setString(1, userIdStr);
             ps.setInt(2, medicineId);
             rs = ps.executeQuery();
 
@@ -63,21 +73,21 @@ public class AddToCartServlet extends HttpServlet {
                 // If item already in the cart, update the quantity
                 String updateQuery = "UPDATE cart SET quantity = quantity + 1 WHERE user_email = ? AND medicine_id = ?";
                 ps = con.prepareStatement(updateQuery);
-                ps.setInt(1, userId);
+                ps.setString(1, userIdStr);
                 ps.setInt(2, medicineId);
                 ps.executeUpdate();
             } else {
                 // If item is not in the cart, insert it with a default quantity of 1
                 String insertQuery = "INSERT INTO cart (user_email, medicine_id, quantity) VALUES (?, ?, ?)";
                 ps = con.prepareStatement(insertQuery);
-                ps.setInt(1, userId);
+                ps.setString(1, userIdStr);
                 ps.setInt(2, medicineId);
                 ps.setInt(3, 1);
                 ps.executeUpdate();
             }
 
             // Redirect to view cart page
-            response.sendRedirect("viewCart.jsp");
+            response.sendRedirect("medicine_catalog.jsp");
 
         } catch (Exception e) {
             e.printStackTrace();

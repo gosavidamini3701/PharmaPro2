@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,6 +76,15 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row">
+                <!-- Alert Section -->
+                <div id="alertContainer" class="container mt-3">
+                    <c:if test="${not empty message}">
+                        <div id="alertMessage" class="alert alert-success" role="alert">
+                            ${message}
+                        </div>
+                    </c:if>
+                </div>
+
                 <!-- Prescription Card -->
                 <div class="col-lg-4">
                     <div class="card mb-4">
@@ -87,48 +100,50 @@
                 <div class="col-lg-8">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">Patient Name</p>
+                            <form action="uploadPrescription" method="post" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Patient Name</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="patientName" placeholder="Enter patient name" required>
+                                    </div>
                                 </div>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" placeholder="Enter patient name">
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Email</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="email" class="form-control" name="email" placeholder="Enter email" required>
+                                    </div>
                                 </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">Email</p>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Phone Number</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="phone" placeholder="Enter phone number" required>
+                                    </div>
                                 </div>
-                                <div class="col-sm-9">
-                                    <input type="email" class="form-control" placeholder="Enter email">
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Upload Prescription</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="file" name="prescription_file" accept=".png,.jpg,.pdf" required class="form-control">
+                                        <small class="text-muted">Only JPEG, PNG, or PDF files allowed.</small>
+                                    </div>
                                 </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">Phone Number</p>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-12 text-end">
+                                        <button type="submit" class="btn btn-primary">Upload Prescription</button>
+                                    </div>
                                 </div>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" placeholder="Enter phone number">
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">Upload Prescription</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <input type="file" class="form-control">
-                                    <small class="text-muted">Only JPEG, PNG, or PDF files allowed.</small>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-12 text-end">
-                                    <button class="btn btn-primary">Upload Prescription</button>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
 
@@ -166,8 +181,17 @@
     </div>
     <!-- Footer End -->
 
-    <!-- Bootstrap JS -->
+    <!-- Bootstrap JS and Alert Hide Script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const alertMessage = document.getElementById("alertMessage");
+            if (alertMessage) {
+                setTimeout(() => {
+                    alertMessage.classList.add("d-none");
+                }, 5000); // 5000ms = 5 seconds
+            }
+        });
+    </script>
 </body>
-
 </html>
