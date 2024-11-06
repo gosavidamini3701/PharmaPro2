@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.ResultSet" %>
@@ -9,7 +9,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>PharmaPro - Medicine Catalog</title>
+    <title>PharmaPro - My Cart</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="img/favicon.ico" rel="icon">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
@@ -67,10 +67,10 @@
                 <a href="index.html" class="nav-item nav-link">Home</a>
                 <a href="service.html" class="nav-item nav-link">Profile</a>
                 <a href="service.html" class="nav-item nav-link">Dashboard</a>
-                <a href="about.html" class="nav-item nav-link active"> My Orders</a>
+                
                 <a href="about.html" class="nav-item nav-link active">Logout</a>
             </div>
-            <a href="myCart.jsp" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">My Cart<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">My Orders<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     <!-- Navbar End -->
@@ -78,11 +78,11 @@
     <!-- Page Header Start -->
     <div class="container-fluid page-header py-5 mb-5" style="background-color: #007bff;">
         <div class="container py-5">
-            <h1 class="display-3 text-white mb-3">Medicine Catalog</h1>
+            <h1 class="display-3 text-white mb-3">Cart</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb text-uppercase mb-0">
                     <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                    <li class="breadcrumb-item text-primary active" aria-current="page">Medicine Catalog</li>
+                    <li class="breadcrumb-item text-primary active" aria-current="page">Cart</li>
                 </ol>
             </nav>
         </div>
@@ -92,88 +92,93 @@
     
     
     <div class="container-xxl py-5">
-        <div class="container">
-            <!-- Search Form -->
-            <div class="mb-4">
-                <form action="medicine_catalog.jsp" method="get" class="input-group">
-                    <input type="text" name="medicineName" class="form-control" placeholder="Search for a medicine by name" required>
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </form>
-            </div>
+        
             <% 
     String cartSuccess = request.getParameter("cartSuccess"); 
     if (cartSuccess != null && cartSuccess.equals("true")) { 
 %>
     <script>
-        alert("Medicine successfully added to cart!");
+        alert("order Confirmed!");
     </script>
 <% 
     } 
 %>
- 
             
             <!-- Medicine Display -->
-            <div class="row">
-                <%
-                    Connection con = null;
-                    PreparedStatement ps = null;
-                    ResultSet rs = null;
-                    String searchQuery = request.getParameter("medicineName");
-                    try {
-                        con = ConnectDB.dbCon();
-                        String query = "SELECT medicine_id, name, manufacturer, price, stock_quantity FROM medicines";
-                        if (searchQuery != null && !searchQuery.trim().isEmpty()) {
-                            query += " WHERE name LIKE ?";
-                        }
-                        ps = con.prepareStatement(query);
-                        if (searchQuery != null && !searchQuery.trim().isEmpty()) {
-                            ps.setString(1, "%" + searchQuery + "%");
-                        }
-                        rs = ps.executeQuery();
+            
+        <div class="row">
+            <%
+            String userEmail="itsmyra72@gmail.com";
+            HttpSession session1 = request.getSession(false); // Get current session, don't create if it doesn't exist
+    		if (session1 != null) {
+    		    User user = (User) session1.getAttribute("currentUser");
+    		    if (user != null) {
+    		        // Use user details
+    		        userEmail=user.getEmail();
+    		       
+    		      
+    		    }
+    		}
+                Connection con = null;
+                PreparedStatement ps = null;
+                ResultSet rs = null;
+                 // Use session-based user email in real scenario
 
-                        if (!rs.isBeforeFirst()) {
-                %>
-                            <p class="text-muted">No medicines found for the search term "<%= searchQuery %>".</p>
-                <%
-                        } else {
-                            while (rs.next()) {
-                                String name = rs.getString("name");
-                                String manufacturer = rs.getString("manufacturer");
-                                double price = rs.getDouble("price");
-                                int stockQuantity = rs.getInt("stock_quantity");
-                %>
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                    <div class="card h-100">
-                        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Medicine Image">
-                        <div class="card-body">
-                            <h5 class="card-title"><%= name %></h5>
-                            <p class="card-text">Manufacturer: <%= manufacturer != null ? manufacturer : "N/A" %></p>
-                            <p class="card-text">Price: <%= String.format("%.2f", price) %> INR</p>
-                            <p class="card-text">Stock: <%= stockQuantity %></p>
-                            <a href="OrderServlet?medicine_id=<%= rs.getInt("medicine_id") %>" class="btn btn-primary">Order Now </a>
-                            
-                            <a href="AddToCartServlet?medicine_id=<%= rs.getInt("medicine_id") %>" class="btn btn-primary">Add to Cart</a>
-                        </div>
+                try {
+                    con = ConnectDB.dbCon();
+                    String query = "SELECT c.quantity, m.medicine_id, m.name, m.manufacturer, m.price, m.stock_quantity " +
+                                   "FROM cart c " +
+                                   "JOIN medicines m ON c.medicine_id = m.medicine_id " +
+                                   "WHERE c.user_email = ?";
+                    ps = con.prepareStatement(query);
+                    ps.setString(1, userEmail);  // Set the user email for cart items
+                    rs = ps.executeQuery();
+
+                    if (!rs.isBeforeFirst()) {
+            %>
+                        <p class="text-muted">Your cart is empty.</p>
+            <%
+                    } else {
+                        while (rs.next()) {
+                            String name = rs.getString("name");
+                            String manufacturer = rs.getString("manufacturer");
+                            double price = rs.getDouble("price");
+                            int stockQuantity = rs.getInt("stock_quantity");
+                            int quantity = rs.getInt("quantity");
+            %>
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Medicine Image">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= name %></h5>
+                        <p class="card-text">Manufacturer: <%= manufacturer != null ? manufacturer : "N/A" %></p>
+                        <p class="card-text">Price: <%= String.format("%.2f", price) %> INR</p>
+                        <p class="card-text">Stock: <%= stockQuantity %></p>
+                        <p class="card-text">Quantity in Cart: <%= quantity %></p>
+                       
+                        
+                        <a href="OrderServlet?medicine_id=<%= rs.getInt("medicine_id") %>&quantity=<%= quantity %>" class="btn btn-primary">Order Now</a>
+                        
+                        <a href="RemoveFromCartServlet?medicine_id=<%= rs.getInt("medicine_id") %>" class="btn btn-danger">Remove</a>
+                        
                     </div>
                 </div>
-                <%
-                
-               
-                            }
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    } finally {
-                        try {
-                            if (rs != null) rs.close();
-                            if (ps != null) ps.close();
-                            if (con != null) con.close();
-                        } catch (Exception e) {
-                            e.printStackTrace();
+            </div>
+            <%
                         }
                     }
-                %>
-            </div>
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        if (rs != null) rs.close();
+                        if (ps != null) ps.close();
+                        if (con != null) con.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            %>
         </div>
     </div>
     <!-- Medicine Catalog End -->
@@ -186,3 +191,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+	

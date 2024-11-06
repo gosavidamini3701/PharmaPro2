@@ -41,20 +41,27 @@ public class UserLoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		
 		String email = request.getParameter("email");
         String password = request.getParameter("password");
         String role = request.getParameter("role");
+        
         
         // Check if the user credentials are valid
         User user = userDAO.loginUser(email, password ,role);
         
         // Check login result
         if (user != null) {
-            // User is authenticated, redirect to the dashboard or home page
+            System.out.println("User Email: " + user.getEmail());
+            System.out.println("User Role: " + user.getRole()); // Add other necessary fields
             request.getSession().setAttribute("user", user); 
+            HttpSession session = request.getSession();
+            user = new User(user.getUserId(),user.getUserName(), user.getEmail()); // Assume user details are retrieved
+            session.setAttribute("currentUser", user);
             response.sendRedirect("dashboard.html"); 
         } else {
-            // Authentication failed, set an error message
             request.setAttribute("errorMessage", "Invalid email or password. Please try again.");
             request.getRequestDispatcher("login.html").forward(request, response); 
         }

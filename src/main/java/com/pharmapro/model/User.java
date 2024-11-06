@@ -1,7 +1,13 @@
 package com.pharmapro.model;
 
 public class User {
-    private int userId;
+    @Override
+	public String toString() {
+		return "User [userId=" + userId + ", userName=" + userName + ", email=" + email + ", password=" + password
+				+ ", confirmPassword=" + confirmPassword + ", phone=" + phone + ", role=" + role + "]";
+	}
+
+	private int userId;
     private String userName;
     private String email;
     private String password;
@@ -9,6 +15,7 @@ public class User {
     private String phone;
     
 	private String role;
+	
     public User() {}
 
     public User(String userName, String email, String password, String confirmPassword, String phone,String role) {
@@ -22,15 +29,24 @@ public class User {
 
     // Getters and Setters
 
-    public int getUserId() {
-        return userId;
+    public User(int userId, String userName, String email) {
+    	this.userName = userName;
+        this.email = email;
+        this.userId=userId;
+	}
+
+	public int getUserId() {
+    	System.out.print(userId);   
+    	return userId;
     }
 
     public void setUserId(int userId) {
+    	System.out.println(userId);
         this.userId = userId;
     }
 
     public String getUserName() {
+    	System.out.print(userName);  
         return userName;
     }
 
@@ -39,6 +55,7 @@ public class User {
     }
 
     public String getEmail() {
+    	System.out.print(email);  
         return email;
     }
 
